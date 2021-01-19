@@ -3,3 +3,8 @@ body {
    padding: 0;
    font-family: "Open sans", sans-serif;
 }
+
+button{
+   width: 63%;
+}
+

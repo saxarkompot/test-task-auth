@@ -1,7 +1,7 @@
 import React from 'react';
 import './Cv.css';
 
-const cv = (props) => {
+function Cv(props) {
    return (
       <div className='Cv'>
          <p>CV</p>
@@ -9,4 +9,4 @@ const cv = (props) => {
    )
 }
 
-export default cv;
+export default Cv;
