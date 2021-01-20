@@ -6,15 +6,8 @@ function Registration(props) {
    return (
       <div className='Form'>
          <form>
-            <label>
-               <input type="text" className="form-control" placeholder="User name" />
-            </label>
-            <label>
-               <input type="password" className="form-control" placeholder="Password" />
-            </label>
-            <label>
-               <input type="password" className="form-control" placeholder="Confirm password" />
-            </label>
+            <input type="text" className="form-control" placeholder="User name" />
+            <input type="password" className="form-control" placeholder="Password" />
             <button type="submit" className="btn btn-primary">Sign up</button>
             <p className="BackLink"><Link to="/login">Already have an account?</Link></p>
          </form>
