@@ -7,20 +7,19 @@ import Registration from '../Components/Registration/Registration';
 import Cv from '../Components/Cv/Cv';
 import PrivateRoute from '../PrivateRoute';
 
-
 function Auth() {
    return (
       <div className='Auth'>
          <header>
             <nav>
                <ul>
-                  <li><Link to='/login'>Login</Link></li>
+                  <li><Link to='/'>Login</Link></li>
                   <li><Link to='/registration'>Registration</Link></li>
                   <li><Link to='/cv'>Cv</Link></li>
                </ul>
             </nav>
          </header>
-         <Route path='/login' exact component={Login} />
+         <Route path='/' exact component={Login} />
          <Route path='/registration' component={Registration} />
          <PrivateRoute path='/cv' component={Cv} />
       </div>

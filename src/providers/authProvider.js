@@ -1,29 +1,36 @@
 import UserProvider from './userProvider';
 
-let loginRetryCounter = 0;
+let loginRetryCounter = 1;
 let blockTime = new Date();
-
+// let errorTiming = (e) => {
+//    let interval = setInterval(() => {
+//       return e++;
+//    }, 1000);
+//    setTimeout(() => {
+//       clearInterval(interval);
+//    }, 30000);
+// };
 const AuthProvider = {
 
-   login: function (name, password) {
+   login: function (name, password, errorMessage) {
       const user = new UserProvider().getUser(name);
       if (loginRetryCounter !== 3 || (Date.now() - blockTime) > 60000) {
          if (loginRetryCounter === 3) {
             loginRetryCounter = 0;
          }
          if (user && user.password === password) {
-            loginRetryCounter = 0;
+            loginRetryCounter = 1;
             localStorage.setItem('currentUser', name);
             return true
          } else {
-            loginRetryCounter++;
+            ++loginRetryCounter;
             if (loginRetryCounter === 3) {
                blockTime = Date.now();
             }
             return false
          }
       }
-      throw new Error('You exceeded number of retries. Try again in one minute')
+      throw new Error(`Error`);
    },
 
    getCurrentUser: function () {
