@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import '../FormStyle.css';
+import classes from '../FormStyle.module.css';
 import UserProvider from "../../providers/userProvider";
 import AuthProvider from "../../providers/authProvider";
+
+const succesfullyRegistered = 'You registered successfully!';
 
 function Registration(props) {
    const [isRegistered, setRegistered] = useState(false);
@@ -13,7 +15,7 @@ function Registration(props) {
 
    function setUser() {
       try {
-         const registResult = new UserProvider().addUser(userName, password)
+         const registResult = new UserProvider().addUser(userName, password);
          setRegistered(registResult);
          setIsError(!registResult);
          setErrorMessage('');
@@ -25,11 +27,12 @@ function Registration(props) {
    }
 
    if (isRegistered) {
+      //console.log(succesfullyRegistered);
       return <Redirect to="/" />;
    }
 
    return (
-      <div className='Form'>
+      <div className={classes.Form}>
          <input
             type="username"
             value={userName}
@@ -54,7 +57,7 @@ function Registration(props) {
             onClick={setUser}>
             Sign on
             </button>
-         <p className="BackLink"><Link to="/">Already have an account?</Link></p>
+         <p className={classes.BackLink}><Link to="/">Already have an account?</Link></p>
          {isError && errorMessage}
       </div >
    )

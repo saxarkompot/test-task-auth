@@ -12,6 +12,7 @@ export default class UserProvider {
       ]);
       users.push({ name, password, cv });
       localStorage.setItem('users', JSON.stringify(users));
+      return true;
    }
 
    getUser(name) {

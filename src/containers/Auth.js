@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Route, Link } from 'react-router-dom';
 
-import './Auth.css';
+import classes from './Auth.module.css';
 import Login from '../Components/Login/Login';
 import Registration from '../Components/Registration/Registration';
 import Cv from '../Components/Cv/Cv';
@@ -9,7 +9,7 @@ import PrivateRoute from '../PrivateRoute';
 
 function Auth() {
    return (
-      <div className='Auth'>
+      <div className={classes.Auth}>
          <header>
             <nav>
                <ul>

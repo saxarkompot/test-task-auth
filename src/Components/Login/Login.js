@@ -1,17 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import '../FormStyle.css';
+import classes from '../FormStyle.module.css';
 import AuthProvider from '../../providers/authProvider';
-
-// let errorTiming = (e) => {
-//    let interval = setInterval(() => {
-//       e++;
-//       callback(e);
-//    }, 1000);
-//    setTimeout(() => {
-//       clearInterval(interval);
-//    }, 30000);
-// };
 
 function Login(props) {
    const [isLoggedIn, setLoggedIn] = useState(false);
@@ -40,23 +30,13 @@ function Login(props) {
             if (errorTime === 0) {
                setErrorMessage('')
                setIsError(false);
+               setErrorTime(10);
             };
             console.log(errorTime);
             setErrorTime(e => e - 1);
          }, 1000);
       }
       return () => clearInterval(interval);
-      // {
-      //    if (errorTime <= 0) {
-      //       setErrorMessage('');
-      //       //console.log(errorTime);
-      //       return clearInterval(interval)
-      //    }
-      // };
-      // setTimeout(() => {
-      //    return clearInterval(interval);
-      //    // }, 120000)
-      // }
    }, [errorMessage, errorTime])
 
    if (isLoggedIn) {
@@ -64,7 +44,7 @@ function Login(props) {
    }
 
    return (
-      <div className='Form'>
+      <div className={classes.Form}>
          <input
             type="username"
             value={userName}
@@ -85,16 +65,19 @@ function Login(props) {
          />
          <button
             type="submit"
-            className="btn btn-primary"
+            className={!errorMessage ? "btn btn-primary" : classes.Disabled}
             onClick={setLogin}>
             Sign in
             </button>
-         <p className="BackLink"><Link to="/registration">Sign up</Link> if you don't have an account yet.</p>
+         <p className={classes.BackLink}><Link to="/registration">Sign up</Link> if you don't have an account yet.</p>
          { isError && (errorMessage
             ?
-            `You exceeded number of retries. Try again in ${Math.trunc(errorTime / 60)} min ${errorTime % 60} sec`
+            <div>
+               You exceeded number of retries. Try again in <b className={classes.Error}>{Math.trunc(errorTime / 60)}</b> min <b className={classes.Error}> {errorTime % 60}</b> sec
+            </div >
             :
-            'The username or password provided were incorrect!')}
+            <p>'The username or password provided were incorrect!'</p>)
+         }
       </div >
    )
 }

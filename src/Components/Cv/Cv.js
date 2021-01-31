@@ -1,9 +1,9 @@
 import React from 'react';
-import './Cv.css';
+import classes from './Cv.module.css';
 
 function Cv(props) {
    return (
-      <div className='Cv'>
+      <div className={classes.Cv}>
          <p>CV</p>
       </div>
    )

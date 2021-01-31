@@ -1,35 +1,22 @@
 import UserProvider from './userProvider';
 
 let loginRetryCounter = 1;
-let blockTime = new Date();
-// let errorTiming = (e) => {
-//    let interval = setInterval(() => {
-//       return e++;
-//    }, 1000);
-//    setTimeout(() => {
-//       clearInterval(interval);
-//    }, 30000);
-// };
+
 const AuthProvider = {
 
-   login: function (name, password, errorMessage) {
+   login: function (name, password) {
       const user = new UserProvider().getUser(name);
-      if (loginRetryCounter !== 3 || (Date.now() - blockTime) > 60000) {
-         if (loginRetryCounter === 3) {
-            loginRetryCounter = 0;
-         }
+      if (loginRetryCounter < 3) {
          if (user && user.password === password) {
             loginRetryCounter = 1;
             localStorage.setItem('currentUser', name);
             return true
          } else {
             ++loginRetryCounter;
-            if (loginRetryCounter === 3) {
-               blockTime = Date.now();
-            }
             return false
          }
       }
+      loginRetryCounter = 1;
       throw new Error(`Error`);
    },
 

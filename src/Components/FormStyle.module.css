@@ -8,12 +8,20 @@
    flex-direction: column;
 }
 
-.BackLink{
+.BackLink {
    margin-top: 10px;
    font-size: 0.8rem;
 }
 
-input{
+.Error {
+   color: red;
+}
+
+input {
    width: 100%;
    margin: 5px;
+}
+
+.Disabled{
+   display: none;
 }
